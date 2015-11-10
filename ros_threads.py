@@ -200,7 +200,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 			self.robot_connected = 0
 
 
-		self.gmap.moveMarker("swift", float(self.swift_lat), float(self.swift_lon))
+		self.gmap.moveRotationalMarker("swift", float(self.swift_lat), float(self.swift_lon), 30)
 
 
 
@@ -261,11 +261,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 		self.tableWidget.setHorizontalHeaderLabels(["Latitude", "Longitude", "Time"])
 
 
-		self.gmap.addMarker("swift", float(self.swift_lat), float(self.swift_lon), **dict(
-		icon="file:///home/pedro/Documents/SWIFT/Threading/swift.png",
-		draggable=False,
-		title = "swift" 
-		))
+
+		self.gmap.addRotationalMarker("swift",float(self.swift_lat), float(self.swift_lon), **dict(
+			draggable=False,
+			title = "swift",
+			rotation = 10
+			))
+
+
+
+
+		# self.gmap.addRotationalMarker("swift", float(self.swift_lat), float(self.swift_lon), **dict(
+		# icon="file:///home/pedro/Documents/SWIFT/Threading/swift.png",
+		# draggable=False,
+		# title = "swift" 
+		# ))
 
 
 		

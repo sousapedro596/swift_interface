@@ -183,6 +183,40 @@ class QGoogleMap(QtWebKit.QWebView) :
 				"); "
 				.format( key))
 
+
+	@trace 
+	def addRotationalMarker(self, key, latitude, longitude, **extra):
+		return self.runScript(
+			"gmap_addRotationMarker("
+				"key={!r}, "
+				"latitude={}, "
+				"longitude={}, "
+				"{}"
+				");"
+			.format(key, latitude, longitude, json.dumps(extra)))
+
+
+	@trace 
+	def moveRotationalMarker(self, key, latitude, longitude, rotation):
+		return self.runScript(
+			"gmap_moveRotationalMarker("
+			"key={!r}, "
+			"latitude={}, "
+			"longitude={}, "
+			"rotation={}"
+			.format( key, latitude, longitude, rotation))
+
+
+	@trace
+	def deleteleRotationMarker(key):
+		return self.runScript(
+			"gmap_deleteRotationalMarker("
+			"key={!r}"
+			.format(key))
+
+
+
+
 	mapMoved = QtCore.Signal(float, float)
 	mapClicked = QtCore.Signal(float, float)
 	mapRightClicked = QtCore.Signal(float, float)
